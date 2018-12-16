@@ -13,8 +13,6 @@ public class NewClass {
         ds.instruction();
         ds.XuatDanhSach();
         ds.ghifile();
-         
-        
     }
 }
 
