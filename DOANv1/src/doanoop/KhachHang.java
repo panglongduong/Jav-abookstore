@@ -1,70 +1,79 @@
 package doanoop;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class KhachHang {
-    protected String makhachhang;
-    protected String tenkhachhang;
-    protected String diachikhachhang;
-    protected int sodienthoaikhachhang;
+    protected String makhạchhang;
+    protected String tenkhạchhang;
+    protected String diachikhạchhang;
+    protected String  sodienthoaikhạchhang;
     
     public KhachHang(){
     }
-    public KhachHang(String makhachhang, String tenkhachhang, String diachikhachhang, int sodienthoaikhachhang)
+    public KhachHang(String makhạchhang, String tenkhạchhang, String diachikhạchhang, String sodienthoaikhạchhang)
     {
-        this.makhachhang = makhachhang;
-        this.tenkhachhang = tenkhachhang;
-        this.diachikhachhang = diachikhachhang;
-        this.sodienthoaikhachhang = sodienthoaikhachhang;
+        this.makhạchhang = makhạchhang;
+        this.tenkhạchhang = tenkhạchhang;
+        this.diachikhạchhang = diachikhạchhang;
+        this.sodienthoaikhạchhang = sodienthoaikhạchhang;
     }
 
-    public String getMakhachhang() {
-        return makhachhang;
+    public String getMakhạchhang() {
+        return makhạchhang;
     }
 
-    public String getTenkhachhang() {
-        return tenkhachhang;
+    public String getTenkhạchhang() {
+        return tenkhạchhang;
     }
 
-    public String getDiachikhachhang() {
-        return diachikhachhang;
+    public String getDiachikhạchhang() {
+        return diachikhạchhang;
     }
 
-    public int getSodienthoaikhachhang() {
-        return sodienthoaikhachhang;
+    public String getSodienthoaikhạchhang() {
+        return sodienthoaikhạchhang;
     }
 
-    public void setMakhachhang(String makhachhang) {
-        this.makhachhang = makhachhang;
+    public void setMakhạchhang(String makhạchhang) {
+        this.makhạchhang = makhạchhang;
     }
 
-    public void setTenkhachhang(String tenkhachhang) {
-        this.tenkhachhang = tenkhachhang;
+    public void setTenkhạchhang(String tenkhạchhang) {
+        this.tenkhạchhang = tenkhạchhang;
     }
 
-    public void setDiachikhachhang(String diachikhachhang) {
-        this.diachikhachhang = diachikhachhang;
+    public void setDiachikhạchhang(String diachikhạchhang) {
+        this.diachikhạchhang = diachikhạchhang;
     }
 
-    public void setSodienthoaikhachhang(int sodienthoaikhachhang) {
-        this.sodienthoaikhachhang = sodienthoaikhachhang;
+    public void setSodienthoaikhạchhang(String  sodienthoaikhạchhang) {
+        this.sodienthoaikhạchhang = sodienthoaikhạchhang;
     }
     
     public void NhapKhachHang()
     {
         Scanner in = new Scanner(System.in);
         System.out.println("Nhập mã khách hàng: ");
-        makhachhang = in.nextLine();
+        makhạchhang = in.nextLine();
         System.out.println("Nhập tên khách hàng: ");
-        tenkhachhang = in.nextLine();
+        tenkhạchhang = in.nextLine();
         System.out.println("Nhập địa chỉ khách hàng: ");
-        diachikhachhang = in.nextLine();
+        diachikhạchhang = in.nextLine();
         System.out.println("Nhập số điện thoại khách hàng: ");
-        sodienthoaikhachhang = in.nextInt();
+        sodienthoaikhạchhang = in.nextLine();
     }
     public void XuatKhachHang()
     {
-        System.out.printf("  %20s | %20s | %20s | %20s | %15s \n",makhachhang,tenkhachhang,diachikhachhang,sodienthoaikhachhang);
+        System.out.printf("  %20s | %20s | %20s | %20s \n",makhạchhang,tenkhạchhang,diachikhạchhang,sodienthoaikhạchhang);
     }
     
+    public void docfile(File f , String s){
+        String output[] = s.split("_");
+        makhạchhang = output[0];
+        tenkhạchhang = output[1];
+        diachikhạchhang = output[2];
+        sodienthoaikhạchhang = output[3];
+       System.out.printf("  %20s | %20s | %20s | %20s \n",makhạchhang,tenkhạchhang,diachikhạchhang,sodienthoaikhạchhang);        
+    }
 }

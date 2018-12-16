@@ -143,7 +143,7 @@ public class DanhSachNhanVien {
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 2:
-                    in.nextLine();
+                    in.nextLine();                                      
                     System.out.println("Nhập mã nhân viên cần xóa:");
                     String ma123 = in.nextLine();
                     xoa(ma123);
@@ -161,7 +161,7 @@ public class DanhSachNhanVien {
                         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 3:
-                    in.nextLine();
+                    in.nextLine();                                        
                     System.out.println("nhập mã nhân viên cần sửa:");
                     String manhanviens = in.nextLine();
                     sua(manhanviens);
@@ -199,7 +199,7 @@ public class DanhSachNhanVien {
         if(id >= 0){
             System.err.println("Tìm thấy nhân viên");
             System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-            System.out.printf("  %20s | %20s | %20s | %20s | %15s \n","MA NV","TEN NV","DIA CHI NV","SDT NV","CHUC VU");
+            System.out.printf("  %20s | %20s | %20s | %20s\n","MA NV","TEN NV","DIA CHI NV","SDT NV");
             NV[id].XuatNhanVien();
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
@@ -262,7 +262,7 @@ public class DanhSachNhanVien {
                         System.out.println("Số điện thoại nhân viên ban đầu : " + NV.getSodienthoainhanvien());
                         System.out.print("Số điện thoại nhân viên : ");
                         in.nextLine();
-                        NV.setSodienthoainhanvien(in.nextInt());
+                        NV.setSodienthoainhanvien(in.nextLine());
                     break;
                 case 6:
                         System.out.println("Thông tin ban dau :");
@@ -276,7 +276,7 @@ public class DanhSachNhanVien {
                         System.out.print("Địa chỉ NV:");                        
                         NV.setDiachinhanvien(in.nextLine());
                         System.out.print("Số điện thoại NV: ");
-                        NV.setSodienthoainhanvien(in.nextInt());
+                        NV.setSodienthoainhanvien(in.nextLine());
                         break;
                     default:                   
                     break LOOP;           
@@ -291,7 +291,7 @@ public void ghifile() throws IOException{
     String mnv;
     String tennv;
     String diachi;
-    int sdt;
+    String sdt;
     File f = new File("testfile.txt");        //ghi file
         FileWriter fw = new FileWriter(f);
         BufferedWriter bw = new BufferedWriter(fw);

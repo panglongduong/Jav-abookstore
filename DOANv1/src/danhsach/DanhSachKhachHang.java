@@ -4,16 +4,21 @@ package danhsach;
 
 
 import doanoop.KhachHang;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 public class DanhSachKhachHang {
     private int v;
-    Scanner in = new Scanner(System.in);
-    KhachHang [] KH;
+   Scanner in = new Scanner(System.in);
+    KhachHang [] KH = new KhachHang[100];
 
     public DanhSachKhachHang() {
     }
-
     public DanhSachKhachHang(int v){
         KH = new KhachHang[v];
         for (int i = 0; i < v; i++) {
@@ -24,7 +29,6 @@ public class DanhSachKhachHang {
     public void NhapDanhSach(){
         System.out.print("Nhập số lượng khách hàng:");
         v=in.nextInt();
-        KH=new KhachHang[v];
         for(int i=0;i<v;i++)
         {
             KH[i] = new KhachHang();
@@ -44,7 +48,7 @@ public class DanhSachKhachHang {
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
     public void them(int slct){
-        KH = Arrays.copyOf(KH, v+slct);
+        KH = Arrays.copyOf(KH, v+slct + 1);//
         for(int i=v; i<v+slct; i++)
         {   
             KH[i] = new KhachHang();
@@ -55,11 +59,14 @@ public class DanhSachKhachHang {
     }
     public void xoa(String makhachhang){
         int id = search_vitri(makhachhang);
+        System.out.println("\n  "+id);
+        System.out.println("\n v =  "+v);
         if(id >= 0){
             for(int i=id; i<v; i++){
+                
                 KH[i]=KH[i+1];
-                v--;
             }
+            v--;
             System.err.println("Đã xóa khách hàng!!!");
         }
         else{
@@ -80,7 +87,7 @@ public class DanhSachKhachHang {
     }
     public void timkiem(){
         int chon = 0;
-        Scanner sc= new Scanner(System.in);
+        Scanner in= new Scanner(System.in);
         LOOP:
         while (true) {
             System.out.println("============ TÌM THÔNG TIN ================");
@@ -91,13 +98,15 @@ public class DanhSachKhachHang {
             chon = in.nextInt();
             switch(chon){
                 case 1:
+                    in.nextLine();
                     System.out.println("Nhập mã khách hàng cần tìm : ");
-                    String makhachhangtk = sc.nextLine();
+                    String makhachhangtk = in.nextLine();
                     search_mnv(makhachhangtk);
                     break;
                 case 2:
-                    System.out.println("Nhập tên khách hàng: ");
-                    String tenkhachhangtk = sc.nextLine();
+                    in.nextLine();
+                    System.out.println("Nhập tên khách hàng  : ");
+                    String tenkhachhangtk = in.nextLine();
                     search_tnv(tenkhachhangtk);
                     break;
                 default:
@@ -108,9 +117,8 @@ public class DanhSachKhachHang {
     public void instruction(){
         Scanner sc= new Scanner(System.in);
         int chon = 0;
-       
         LOOP:
-        while (true) { 
+        while(true){
             System.out.println("1.thêm số lượng KH");
             System.out.println("2.xóa KH");
             System.out.println("3.Sửa KH");
@@ -135,9 +143,12 @@ public class DanhSachKhachHang {
                     System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 2:
+                    in.nextLine();                                      
                     System.out.println("Nhập mã khách hàng cần xóa:");
-                    String makhachhang = sc.nextLine();
-                    xoa(makhachhang);
+                    String ma123 = in.nextLine();
+                    xoa(ma123);
+                    int demstt=0;
+                  //  for(int i=0;i<;i++)
                     System.out.println("Số lượng khách hàng hiện tại:" +v);
                     System.out.println("Danh sách khách hàng vừa nhập:");
                     System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -150,8 +161,9 @@ public class DanhSachKhachHang {
                         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 3:
+                    in.nextLine();                                        
                     System.out.println("nhập mã khách hàng cần sửa:");
-                    String makhachhangs = sc.nextLine();
+                    String makhachhangs = in.nextLine();
                     sua(makhachhangs);
                     break;
                 case  4:
@@ -165,7 +177,18 @@ public class DanhSachKhachHang {
     public int search_vitri(String makhachhang){
         int vt = -1;
         for(int i= 0; i<v;i++){
-            if(KH[i].getMakhachhang().equals(makhachhang)){
+            if(KH[i].getMakhạchhang().equals(makhachhang)){
+
+                vt = i;
+                break;
+            }
+        }
+        return vt;
+    }
+        public int search_vitri1(String tenkhachhang){
+        int vt = -1;
+        for(int i= 0; i<v;i++){
+            if(KH[i].getTenkhạchhang().equals(tenkhachhang)){
                 vt = i;
                 break;
             }
@@ -186,11 +209,13 @@ public class DanhSachKhachHang {
         }
     }
     public void search_tnv(String tenkhachhang){
-        int id = search_vitri(tenkhachhang);
+        int id = search_vitri1(tenkhachhang);
+        
+        System.out.println("  "+id+tenkhachhang);
         if(id >= 0){
             System.err.println("Tìm thấy khách hàng");
             System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-            System.out.printf("  %20s | %20s | %20s | %20s | %15s \n","MA KH","TEN KH","DIA CHI KH","SDT KH","CHUC VU");
+            System.out.printf("  %20s | %20s | %20s | %20s\n","MA KH","TEN KH","DIA CHI KH","SDT KH");
             KH[id].XuatKhachHang();
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
@@ -207,8 +232,7 @@ public class DanhSachKhachHang {
             System.out.println("2. Tên Nhân Viên ");
             System.out.println("3. Mã Nhân Viên ");
             System.out.println("4. Địa Chỉ Nhân Viên ");
-            System.out.println("5. Số Điện Thoại Nhân Viên ");
-            
+            System.out.println("5. Số Điện Thoại Nhân Viên ");            
             System.out.println("6. Tất cả ");
             System.out.println("7. Thoát");
             System.out.print("Nhập lựa chọn :");
@@ -218,52 +242,101 @@ public class DanhSachKhachHang {
                         KH.XuatKhachHang();
                         break;
                 case 2:
-                      System.out.println("Tên KH ban đầu : " +KH.getTenkhachhang());
+                      System.out.println("Tên KH ban đầu : " +KH.getTenkhạchhang());
                       System.out.print("Tên KH :");
                       in.nextLine();
-                      KH.setTenkhachhang(in.nextLine());
+                      KH.setTenkhạchhang(in.nextLine());
                     break;
                 case 3:
-                        System.out.println("Mã KH ban đầu : " + KH.getMakhachhang());
+                        System.out.println("Mã KH ban đầu : " + KH.getMakhạchhang());
                         System.out.print("Mã KH : ");
                         in.nextLine();
-                        KH.setMakhachhang(in.nextLine());
+                        KH.setMakhạchhang(in.nextLine());
                     break;
                 case 4:
-                        System.out.println("Địa chỉ khách hàng ban đầu : " + KH.getDiachikhachhang());
+                        System.out.println("Địa chỉ khách hàng ban đầu : " + KH.getDiachikhạchhang());
                         System.out.print("Địa chỉ khách hàng : ");
                         in.nextLine();
-                        KH.setDiachikhachhang(in.nextLine());
+                        KH.setDiachikhạchhang(in.nextLine());
                     break;
                 case 5:
-                        System.out.println("Số điện thoại khách hàng ban đầu : " + KH.getSodienthoaikhachhang());
+                        System.out.println("Số điện thoại khách hàng ban đầu : " + KH.getSodienthoaikhạchhang());
                         System.out.print("Số điện thoại khách hàng : ");
                         in.nextLine();
-                        KH.setSodienthoaikhachhang(in.nextInt());
+                        KH.setDiachikhạchhang(in.nextLine());
                     break;
                 case 6:
                         System.out.println("Thông tin ban dau :");
-                        KH.XuatKhachHang();
+                        KH.XuatKhachHang(); 
+                        in.nextLine();
                         System.out.print("Mã KH:");
-                        in.nextLine();
-                        KH.setMakhachhang(in.nextLine());
-                        System.out.print("Tên KH:");
-                        in.nextLine();
-                        KH.setTenkhachhang(in.nextLine());
-                        System.out.print("Địa chỉ KH:");
-                        in.nextLine();
-                        KH.setDiachikhachhang(in.nextLine());
+                        String moi1=in.nextLine();
+                        KH.setMakhạchhang(moi1);
+                        
+                        System.out.print("Tên KH:");                        
+                        KH.setTenkhạchhang(in.nextLine());
+                        System.out.print("Địa chỉ KH:");                        
+                        KH.setDiachikhạchhang(in.nextLine());
                         System.out.print("Số điện thoại KH: ");
-                        in.nextLine();
-                        KH.setSodienthoaikhachhang(in.nextInt());
-                        System.out.print("Chức vụ KH: ");
-                    break;
-                    default:
-                        System.err.println(" SUA HOAN TAT !!!!!");
+                        KH.setSodienthoaikhạchhang(in.nextLine());
+                        break;
+                    default:                   
                     break LOOP;           
             }
         }
         return KH;
     }
-}
 
+
+public void ghifile() throws IOException{
+    
+    String mnv;
+    String tennv;
+    String diachi;
+    String sdt;
+    File f = new File("testfile.txt");        //ghi file
+        FileWriter fw = new FileWriter(f);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        try{
+            for(int i =0 ; i<v ; i++)
+            {
+                mnv = KH[i].getMakhạchhang();
+                tennv = KH[i].getTenkhạchhang();
+                diachi = KH[i].getDiachikhạchhang();
+                sdt = KH[i].getSodienthoaikhạchhang();
+                pw.write(mnv+"_");
+                pw.write(tennv+"_");
+                pw.write(diachi+"_");
+                pw.write(sdt+"\r\n");
+            }
+        }catch(Exception e){
+            System.out.println("lỗi đọc file: "+e);
+        }
+        pw.close();
+        bw.close();
+        fw.close();
+        
+    }
+public void docfile() throws FileNotFoundException{
+    File f = new File("testfile.txt");
+    v=0;
+    System.out.printf("  %20s | %20s | %20s | %20s \n","MA KH","TEN KH","DIA CHI KH","SDT KH");    
+        Scanner sc = new Scanner(f);
+        try{
+            String s;
+            String[] outFile;
+            while(sc.hasNext())
+            {
+                s = sc.nextLine();
+                KH[v] = new KhachHang();
+                KH[v].docfile(f,s);
+                v++;
+            }
+        }catch(NumberFormatException e){
+            System.out.println(e);
+        }
+        sc.close();
+        KH = Arrays.copyOf(KH,v+1);
+    }
+}

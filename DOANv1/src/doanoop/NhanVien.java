@@ -7,11 +7,11 @@ public class NhanVien {
     protected String manhanvien;
     protected String tennhanvien;
     protected String diachinhanvien;
-    protected int sodienthoainhanvien;
+    protected String  sodienthoainhanvien;
     
     public NhanVien(){
     }
-    public NhanVien(String manhanvien, String tennhanvien, String diachinhanvien, int sodienthoainhanvien)
+    public NhanVien(String manhanvien, String tennhanvien, String diachinhanvien, String sodienthoainhanvien)
     {
         this.manhanvien = manhanvien;
         this.tennhanvien = tennhanvien;
@@ -31,7 +31,7 @@ public class NhanVien {
         return diachinhanvien;
     }
 
-    public int getSodienthoainhanvien() {
+    public String getSodienthoainhanvien() {
         return sodienthoainhanvien;
     }
 
@@ -47,7 +47,7 @@ public class NhanVien {
         this.diachinhanvien = diachinhanvien;
     }
 
-    public void setSodienthoainhanvien(int sodienthoainhanvien) {
+    public void setSodienthoainhanvien(String  sodienthoainhanvien) {
         this.sodienthoainhanvien = sodienthoainhanvien;
     }
     
@@ -61,7 +61,7 @@ public class NhanVien {
         System.out.println("Nhập địa chỉ nhân viên: ");
         diachinhanvien = in.nextLine();
         System.out.println("Nhập số điện thoại nhân viên: ");
-        sodienthoainhanvien = in.nextInt();
+        sodienthoainhanvien = in.nextLine();
     }
     public void XuatNhanVien()
     {
@@ -73,7 +73,7 @@ public class NhanVien {
         manhanvien = output[0];
         tennhanvien = output[1];
         diachinhanvien = output[2];
-        sodienthoainhanvien = Integer.parseInt(output[3]);
+        sodienthoainhanvien = output[3];
        System.out.printf("  %20s | %20s | %20s | %20s \n",manhanvien,tennhanvien,diachinhanvien,sodienthoainhanvien);        
     }
 }

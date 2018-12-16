@@ -1,78 +1,79 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package doanoop;
 
+import java.io.File;
 import java.util.Scanner;
+
 public class NhaCungCap {
-    String tennhacc;
-    String manhacc;
-    String diachi;
-    String sdt;
-    public NhaCungCap(){}
-    public NhaCungCap(String tennhacc,String manhacc,String diachi,String sdt){
-        tennhacc=this.tennhacc;
-        manhacc=this.manhacc;
-        diachi=this.diachi;
-        sdt=this.sdt;
+    protected String manhacungcap;
+    protected String tennhacungcap;
+    protected String diachinhacungcap;
+    protected String  sodienthoainhacungcap;
+    
+    public NhaCungCap(){
     }
-    public NhaCungCap(NhaCungCap ncc)
+    public NhaCungCap(String manhacungcap, String tennhacungcap, String diachinhacungcap, String sodienthoainhacungcap)
     {
-        tennhacc=ncc.tennhacc;
-        manhacc=ncc.manhacc;
-        diachi=ncc.diachi;
-        sdt=ncc.sdt;
-    }
-    public void nhapnhacungcap(){
-        Scanner scan=new Scanner(System.in);
-        System.out.print("nhap ten nha cc");
-        tennhacc=scan.nextLine();
-        System.out.print("nhap ma nha cc");
-        manhacc=scan.nextLine();
-        System.out.print("nhap dia chi nha cc");
-        diachi=scan.nextLine();
-        System.out.print("nhap sdt nha cc");
-        sdt=scan.nextLine();
-    }
-    public void xuatnhacungcap(){
-        System.out.println("ma nha cung cap : "+this.manhacc);
-        System.out.println("ten nha cung cap : "+this.tennhacc);
-        System.out.println("dia chi nha cung cap : "+this.diachi);
-        System.out.println("so dien thoai nha cung cap : "+this.sdt);
-        
-    }
-    public String getTennhacc() {
-        return tennhacc;
+        this.manhacungcap = manhacungcap;
+        this.tennhacungcap = tennhacungcap;
+        this.diachinhacungcap = diachinhacungcap;
+        this.sodienthoainhacungcap = sodienthoainhacungcap;
     }
 
-    public void setTennhacc(String tennhacc) {
-        this.tennhacc = tennhacc;
+    public String getManhacungcap() {
+        return manhacungcap;
     }
 
-    public String getManhacc() {
-        return manhacc;
+    public String getTennhacungcap() {
+        return tennhacungcap;
     }
 
-    public void setManhacc(String manhacc) {
-        this.manhacc = manhacc;
+    public String getDiachinhacungcap() {
+        return diachinhacungcap;
     }
 
-    public String getDiachi() {
-        return diachi;
+    public String getSodienthoainhacungcap() {
+        return sodienthoainhacungcap;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
+    public void setManhacungcap(String manhacungcap) {
+        this.manhacungcap = manhacungcap;
     }
 
-    public String getSdt() {
-        return sdt;
+    public void setTennhacungcap(String tennhacungcap) {
+        this.tennhacungcap = tennhacungcap;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setDiachinhacungcap(String diachinhacungcap) {
+        this.diachinhacungcap = diachinhacungcap;
+    }
+
+    public void setSodienthoainhacungcap(String  sodienthoainhacungcap) {
+        this.sodienthoainhacungcap = sodienthoainhacungcap;
     }
     
+    public void NhapNhaCungCap()
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Nhập mã nhà cung cấp: ");
+        manhacungcap = in.nextLine();
+        System.out.println("Nhập tên nhà cung cấp: ");
+        tennhacungcap = in.nextLine();
+        System.out.println("Nhập địa chỉ nhà cung cấp: ");
+        diachinhacungcap = in.nextLine();
+        System.out.println("Nhập số điện thoại nhà cung cấp: ");
+        sodienthoainhacungcap = in.nextLine();
+    }
+    public void XuatNhaCungCap()
+    {
+        System.out.printf("  %20s | %20s | %20s | %20s \n",manhacungcap,tennhacungcap,diachinhacungcap,sodienthoainhacungcap);
+    }
+    
+    public void docfile(File f , String s){
+        String output[] = s.split("_");
+        manhacungcap = output[0];
+        tennhacungcap = output[1];
+        diachinhacungcap = output[2];
+        sodienthoainhacungcap = output[3];
+       System.out.printf("  %20s | %20s | %20s | %20s \n",manhacungcap,tennhacungcap,diachinhacungcap,sodienthoainhacungcap);        
+    }
 }
