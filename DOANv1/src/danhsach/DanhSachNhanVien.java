@@ -4,12 +4,18 @@ package danhsach;
 
 
 import doanoop.NhanVien;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 public class DanhSachNhanVien {
     private int v;
    Scanner in = new Scanner(System.in);
-    NhanVien [] NV = new NhanVien[10];
+    NhanVien [] NV = new NhanVien[100];
 
     public DanhSachNhanVien() {
     }
@@ -141,6 +147,8 @@ public class DanhSachNhanVien {
                     System.out.println("Nhập mã nhân viên cần xóa:");
                     String ma123 = in.nextLine();
                     xoa(ma123);
+                    int demstt=0;
+                  //  for(int i=0;i<;i++)
                     System.out.println("Số lượng khách hàng hiện tại:" +v);
                     System.out.println("Danh sách nhân viên vừa nhập:");
                     System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -153,6 +161,7 @@ public class DanhSachNhanVien {
                         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 3:
+                    in.nextLine();
                     System.out.println("nhập mã nhân viên cần sửa:");
                     String manhanviens = in.nextLine();
                     sua(manhanviens);
@@ -274,5 +283,58 @@ public class DanhSachNhanVien {
             }
         }
         return NV;
+    }
+
+
+public void ghifile() throws IOException{
+    
+    String mnv;
+    String tennv;
+    String diachi;
+    int sdt;
+    File f = new File("testfile.txt");        //ghi file
+        FileWriter fw = new FileWriter(f);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        try{
+            for(int i =0 ; i<v ; i++)
+            {
+                mnv = NV[i].getManhanvien();
+                tennv = NV[i].getTennhanvien();
+                diachi = NV[i].getDiachinhanvien();
+                sdt = NV[i].getSodienthoainhanvien();
+                pw.write(mnv+"_");
+                pw.write(tennv+"_");
+                pw.write(diachi+"_");
+                pw.write(sdt+"\r\n");
+            }
+        }catch(Exception e){
+            System.out.println("lỗi đọc file: "+e);
+        }
+        pw.close();
+        bw.close();
+        fw.close();
+        
+    }
+public void docfile() throws FileNotFoundException{
+    File f = new File("testfile.txt");
+    v=0;
+    System.out.printf("  %20s | %20s | %20s | %20s \n","MA NV","TEN NV","DIA CHI NV","SDT NV");    
+        Scanner sc = new Scanner(f);
+        try{
+            String s;
+            String[] outFile;
+            while(sc.hasNext())
+            {
+                s = sc.nextLine();
+                NV[v] = new NhanVien();
+                NV[v].docfile(f,s);
+                v++;
+            }
+        }catch(NumberFormatException e){
+            System.out.println(e);
+        }
+        sc.close();
+        NV = Arrays.copyOf(NV,v+1);
     }
 }

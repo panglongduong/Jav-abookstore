@@ -1,5 +1,6 @@
 package doanoop;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class NhanVien {
@@ -67,4 +68,12 @@ public class NhanVien {
         System.out.printf("  %20s | %20s | %20s | %20s \n",manhanvien,tennhanvien,diachinhanvien,sodienthoainhanvien);
     }
     
+    public void docfile(File f , String s){
+        String output[] = s.split("_");
+        manhanvien = output[0];
+        tennhanvien = output[1];
+        diachinhanvien = output[2];
+        sodienthoainhanvien = Integer.parseInt(output[3]);
+       System.out.printf("  %20s | %20s | %20s | %20s \n",manhanvien,tennhanvien,diachinhanvien,sodienthoainhanvien);        
+    }
 }
