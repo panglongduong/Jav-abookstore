@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class PhieuNhapHang {
     String mapnh;
-    String manhacc; 
     String manhanvien;
     double tongtien;
     String ngaynhaphang;
@@ -17,7 +16,6 @@ public class PhieuNhapHang {
     public PhieuNhapHang(){}
     public PhieuNhapHang(String mapnh,String manhacc,String manhanvien,String ngaynhaphang,double tongtien){
         mapnh=this.mapnh;
-        manhacc=this.manhacc;
         manhanvien=this.manhanvien;
         tongtien=this.tongtien;
         ngaynhaphang=this.ngaynhaphang;
@@ -26,7 +24,6 @@ public class PhieuNhapHang {
     }
     public PhieuNhapHang(PhieuNhapHang pnh){
         mapnh=pnh.mapnh;
-        manhacc=pnh.manhacc;
         ngaynhaphang=pnh.ngaynhaphang;
         manhanvien=pnh.manhanvien; 
         tongtien=pnh.tongtien;
@@ -36,8 +33,6 @@ public class PhieuNhapHang {
         Scanner scan=new Scanner(System.in);
         System.out.print("nhap ma phieu nhap hang");
         mapnh=scan.nextLine();
-        System.out.print("nhap ma nha cc");
-        manhacc=scan.nextLine();
         System.out.print("nhap ma nhan vien");
         manhanvien=scan.nextLine();
         System.out.print("nhap ngay nhap hang");
@@ -47,7 +42,6 @@ public class PhieuNhapHang {
     }
     public void xuatphieunhaphang(){
         System.out.println("ma nha cung cap : "+this.mapnh);
-        System.out.println("ten nha cung cap : "+this.manhacc);
         System.out.println("dia chi nha cung cap : "+this.manhanvien);
         System.out.println("so dien thoai nha cung cap : "+this.ngaynhaphang);
         System.out.println("tong tien  : "+this.tongtien);
@@ -59,13 +53,6 @@ public class PhieuNhapHang {
 
     public void setMapnh(String mapnh) {
         this.mapnh = mapnh;
-    }
-    public String getManhacc() {
-        return manhacc;
-    }
-
-    public void setManhacc(String manhacc) {
-        this.manhacc = manhacc;
     }
     public double getTongtien() {
         return tongtien;
