@@ -1,0 +1,6 @@
+ncc1_CC1_HCM_01248712
+ncc2_CC1_Dong Nai_01248712
+ncc3_CC1_Vung Tau_01248712
+ncc4_CC1_Long An_01248712
+ncc5_CC1_Tay Ninh_91221912
+ncc6_CC1_Ha Noi_124421

@@ -36,7 +36,7 @@ public class DanhSachNhanVien {
         }
     }
     public void XuatDanhSach(){
-        System.out.println("Số lượng nhân viên hiện tại:" +v);
+       // System.out.println("Số lượng nhân viên hiện tại:" +v);
         System.out.println("Danh sach nhân viên vừa nhập");
         System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
         System.out.printf("   %20s | %20s | %20s | %20s \n","MA NV","TEN NV","DIA CHI NV","SDT NV");     
@@ -52,7 +52,7 @@ public class DanhSachNhanVien {
         for(int i=v; i<v+slct; i++)
         {   
             NV[i] = new NhanVien();
-            System.out.println("Nhập nhân viên thứ " + i + " :");
+            //System.out.println("Nhập nhân viên thứ " + i + " :");
             NV[i].NhapNhanVien();
         }
         v+=slct;
@@ -117,21 +117,21 @@ public class DanhSachNhanVien {
     public void instruction(){
         Scanner sc= new Scanner(System.in);
         int chon = 0;
-        LOOP:
-        while(true){
-            System.out.println("1.thêm số lượng NV");
-            System.out.println("2.xóa NV");
-            System.out.println("3.Sửa NV");
-            System.out.println("4.Tìm NV");
-            System.out.println("5.Thoát");
-            System.out.println("Nhập lựa chọn : ");
-            chon = in.nextInt();
+        System.out.println("1.thêm số lượng NV");
+        System.out.println("2.xóa NV");
+        System.out.println("3.Sửa NV");
+        System.out.println("4.Tìm NV");
+        System.out.println("5.Quay Lại");
+        System.out.println("Nhập lựa chọn : ");
+        chon = in.nextInt();
+        while(chon!= 5){
+          
             switch(chon){
                 case 1:
                     System.out.println("Nhập số lượng NV cần thêm:");
                     int slct=in.nextInt();
                     them(slct);
-                    System.out.println("Số lượng khách hàng hiện tại:" +v);
+                    //System.out.println("Số lượng khách hàng hiện tại:" +v);
                     System.out.println("Danh sách khách hàng vừa nhập:");
                     System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     System.out.printf("   %20s | %20s | %20s | %20s \n","MA NV","TEN NV","DIA CHI NV","SDT NV");     
@@ -149,7 +149,7 @@ public class DanhSachNhanVien {
                     xoa(ma123);
                     int demstt=0;
                   //  for(int i=0;i<;i++)
-                    System.out.println("Số lượng khách hàng hiện tại:" +v);
+                  //  System.out.println("Số lượng nhan viên hiện tại:" +v);
                     System.out.println("Danh sách nhân viên vừa nhập:");
                     System.out.printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                     System.out.printf("   %20s | %20s | %20s | %20s  \n","MA NV","TEN NV","DIA CHI NV","SDT NV");     
@@ -170,8 +170,16 @@ public class DanhSachNhanVien {
                     timkiem();
                     break;
                 default:
-                    break LOOP;
+                    System.out.println("Lua chon khong hop le. xin vui long kiem tra lai!!");
             }
+        System.out.println("1.thêm số lượng NV");
+        System.out.println("2.xóa NV");
+        System.out.println("3.Sửa NV");
+        System.out.println("4.Tìm NV");
+        System.out.println("5.Quay Lại");
+        System.out.println("Nhập lựa chọn : ");
+        chon = in.nextInt();
+            
         }
     }
     public int search_vitri(String manhanvien){
@@ -292,7 +300,7 @@ public void ghifile() throws IOException{
     String tennv;
     String diachi;
     String sdt;
-    File f = new File("testfile.txt");        //ghi file
+    File f = new File("nhanvien.txt");        //ghi file
         FileWriter fw = new FileWriter(f);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
@@ -317,7 +325,7 @@ public void ghifile() throws IOException{
         
     }
 public void docfile() throws FileNotFoundException{
-    File f = new File("testfile.txt");
+    File f = new File("nhanvien.txt");
     v=0;
     System.out.printf("  %20s | %20s | %20s | %20s \n","MA NV","TEN NV","DIA CHI NV","SDT NV");    
         Scanner sc = new Scanner(f);

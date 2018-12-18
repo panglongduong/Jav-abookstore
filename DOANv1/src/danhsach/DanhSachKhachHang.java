@@ -116,16 +116,16 @@ public class DanhSachKhachHang {
     }
     public void instruction(){
         Scanner sc= new Scanner(System.in);
-        int chon = 0;
-        LOOP:
-        while(true){
+        int chon;
             System.out.println("1.thêm số lượng KH");
             System.out.println("2.xóa KH");
             System.out.println("3.Sửa KH");
             System.out.println("4.Tìm KH");
-            System.out.println("5.Thoát");
+            System.out.println("5.Quay lại");
             System.out.println("Nhập lựa chọn : ");
             chon = in.nextInt();
+        while(chon != 5){
+            
             switch(chon){
                 case 1:
                     System.out.println("Nhập số lượng KH cần thêm:");
@@ -170,8 +170,15 @@ public class DanhSachKhachHang {
                     timkiem();
                     break;
                 default:
-                    break LOOP;
+                    System.out.println("Lua chon khong hop le. xin vui long kiem tra lai!");
             }
+            System.out.println("1.thêm số lượng KH");
+            System.out.println("2.xóa KH");
+            System.out.println("3.Sửa KH");
+            System.out.println("4.Tìm KH");
+            System.out.println("5.Quay lại");
+            System.out.println("Nhập lựa chọn : ");
+            chon = in.nextInt();
         }
     }
     public int search_vitri(String makhachhang){
@@ -294,7 +301,7 @@ public void ghifile() throws IOException{
     String tennv;
     String diachi;
     String sdt;
-    File f = new File("testfile.txt");        //ghi file
+    File f = new File("khachhang.txt");        //ghi file
         FileWriter fw = new FileWriter(f);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
@@ -319,7 +326,7 @@ public void ghifile() throws IOException{
         
     }
 public void docfile() throws FileNotFoundException{
-    File f = new File("testfile.txt");
+    File f = new File("khachhang.txt");
     v=0;
     System.out.printf("  %20s | %20s | %20s | %20s \n","MA KH","TEN KH","DIA CHI KH","SDT KH");    
         Scanner sc = new Scanner(f);

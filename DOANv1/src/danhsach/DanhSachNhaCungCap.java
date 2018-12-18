@@ -76,10 +76,10 @@ public class DanhSachNhaCungCap {
     public void sua(String manhacungcap){
         int id = search_vitri(manhacungcap);
         if(id >= 0){
-            NhaCungCap nv = new NhaCungCap();
-            nv = (NhaCungCap) NCC[id];
-            Set_NCC(nv);
-            NCC[id]=nv;
+            NhaCungCap ncc = new NhaCungCap();
+            ncc = (NhaCungCap) NCC[id];
+            Set_NCC(ncc);
+            NCC[id]=ncc;
         }
         else{
             System.err.println("KHONG CO NCC CAN SUA");
@@ -88,7 +88,6 @@ public class DanhSachNhaCungCap {
     public void timkiem(){
         int chon = 0;
         Scanner in= new Scanner(System.in);
-        LOOP:
         while (true) {
             System.out.println("============ TÌM THÔNG TIN ================");
             System.out.println("1.Tìm mã nhà cung cấp");
@@ -101,31 +100,32 @@ public class DanhSachNhaCungCap {
                     in.nextLine();
                     System.out.println("Nhập mã nhà cung cấp cần tìm : ");
                     String manhacungcaptk = in.nextLine();
-                    search_mnv(manhacungcaptk);
+                    search_mncc(manhacungcaptk);
                     break;
                 case 2:
                     in.nextLine();
                     System.out.println("Nhập tên nhà cung cấp  : ");
                     String tennhacungcaptk = in.nextLine();
-                    search_tnv(tennhacungcaptk);
+                    search_tncc(tennhacungcaptk);
                     break;
+                case 3: break;
                 default:
-                    break LOOP;
+                    System.out.println("Lua chon khong hop le. xin vui long kiem tra lai!");
             }
         }
     }
     public void instruction(){
         Scanner sc= new Scanner(System.in);
-        int chon = 0;
-        LOOP:
-        while(true){
+        int chon ;
             System.out.println("1.thêm số lượng NCC");
             System.out.println("2.xóa NCC");
             System.out.println("3.Sửa NCC");
             System.out.println("4.Tìm NCC");
-            System.out.println("5.Thoát");
+            System.out.println("5.Quay Lại");
             System.out.println("Nhập lựa chọn : ");
             chon = in.nextInt();
+        while(chon != 5 )
+        {
             switch(chon){
                 case 1:
                     System.out.println("Nhập số lượng NCC cần thêm:");
@@ -169,9 +169,18 @@ public class DanhSachNhaCungCap {
                 case  4:
                     timkiem();
                     break;
+                
                 default:
-                    break LOOP;
+                    System.out.println("Lua chon khong hop le. xin vui long kiem tra lai!");   
+                    
             }
+            System.out.println("1.thêm số lượng NCC");
+            System.out.println("2.xóa NCC");
+            System.out.println("3.Sửa NCC");
+            System.out.println("4.Tìm NCC");
+            System.out.println("5.Quay Lại");
+            System.out.println("Nhập lựa chọn : ");
+            chon = in.nextInt();
         }
     }
     public int search_vitri(String manhacungcap){
@@ -194,7 +203,7 @@ public class DanhSachNhaCungCap {
         }
         return vt;
     }
-    public void search_mnv(String manhacungcap){
+    public void search_mncc(String manhacungcap){
         int id = search_vitri(manhacungcap);
         if(id >= 0){
             System.err.println("Tìm thấy nhà cung cấp");
@@ -207,7 +216,7 @@ public class DanhSachNhaCungCap {
             System.err.println("Không tìm thấy nhà cung cấp");
         }
     }
-    public void search_tnv(String tennhacungcap){
+    public void search_tncc(String tennhacungcap){
         int id = search_vitri1(tennhacungcap);
         
         System.out.println("  "+id+tennhacungcap);
@@ -288,23 +297,23 @@ public class DanhSachNhaCungCap {
 
 public void ghifile() throws IOException{
     
-    String mnv;
-    String tennv;
+    String mncc;
+    String tenncc;
     String diachi;
     String sdt;
-    File f = new File("testfile.txt");        //ghi file
+    File f = new File("nhacungcap.txt");        //ghi file
         FileWriter fw = new FileWriter(f);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
         try{
             for(int i =0 ; i<v ; i++)
             {
-                mnv = NCC[i].getManhacungcap();
-                tennv = NCC[i].getTennhacungcap();
+                mncc = NCC[i].getManhacungcap();
+                tenncc = NCC[i].getTennhacungcap();
                 diachi = NCC[i].getDiachinhacungcap();
                 sdt = NCC[i].getSodienthoainhacungcap();
-                pw.write(mnv+"_");
-                pw.write(tennv+"_");
+                pw.write(mncc+"_");
+                pw.write(tenncc+"_");
                 pw.write(diachi+"_");
                 pw.write(sdt+"\r\n");
             }
@@ -317,7 +326,7 @@ public void ghifile() throws IOException{
         
     }
 public void docfile() throws FileNotFoundException{
-    File f = new File("testfile.txt");
+    File f = new File("nhacungcap.txt");
     v=0;
     System.out.printf("  %20s | %20s | %20s | %20s \n","MA NCC","TEN NCC","DIA CHI NCC","SDT NCC");    
         Scanner sc = new Scanner(f);

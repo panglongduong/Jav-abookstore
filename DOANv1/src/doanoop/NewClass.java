@@ -9,23 +9,23 @@ import java.io.IOException;
 public class NewClass {
     public static void main(String[] args) throws IOException
     {
-        DanhSachNhanVien  ds = new DanhSachNhanVien();
+       /* DanhSachNhanVien  ds = new DanhSachNhanVien();
             //ds.NhapDanhSach();
         ds.docfile();
         ds.instruction();
         ds.XuatDanhSach();
-        ds.ghifile();
+        ds.ghifile();*/
         /*DanhSachKhachHang ds = new DanhSachKhachHang();
          ds.docfile();
         ds.instruction();
         ds.XuatDanhSach();
         ds.ghifile();*/
-       /* DanhSachNhaCungCap ds = new DanhSachNhaCungCap();
+       DanhSachNhaCungCap ds = new DanhSachNhaCungCap();
          ds.docfile();
         ds.instruction();
         ds.XuatDanhSach();
         ds.ghifile();
-*/
+
         
         
     }
